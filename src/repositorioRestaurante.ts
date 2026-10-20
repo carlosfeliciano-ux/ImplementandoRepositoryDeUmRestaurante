@@ -1,46 +1,69 @@
-class Funcionario {
-    nome: string;
-    sexo: string;
-    dt_contrata: Date; 
-    cpf: string; 
-    rg: string
+﻿import { Funcionario } from "./Funcionario.js";
+import { CLT } from "./CLT.js";
+import { Freelancer } from "./Freelancer.js";
+import { Prato } from "./Prato.js";
+import { Entrega } from "./Entrega.js";
 
-    constructor(
-        nome: string, sexo: string, dt_contrata: Date, 
-        cpf: string, rg: string){
-            this.nome = nome;
-            this.sexo = sexo;
-            this.dt_contrata = dt_contrata;
-            this.cpf = cpf;
-            this.rg = rg;
+export class RepositorioRestaurante {
+    funcionarios: Funcionario[] = [];
+    pratos: Prato[] = [];
+    entregas: Entrega[] = [];
+
+    adicionarFuncionario(funcionario: Funcionario): void {
+        this.funcionarios.push(funcionario);
     }
-}
 
-class CLT extends Funcionario {
-    salario_fixo: number; // Atributo específico de funcionário contratado
-
-    constructor(
-        nome: string, 
-        sexo: string, 
-        dt_contrata: Date, 
-        cpf: string, 
-        rg: string, 
-        salario_fixo: number
-    ) {
-        // Passa apenas os valores para a classe pai (Funcionario)
-        super(nome, sexo, dt_contrata, cpf, rg);
-        this.salario_fixo = salario_fixo;
+    adicionarPrato(prato: Prato): void {
+        this.pratos.push(prato);
     }
-}
 
-class prato{
-    nome: string;
-    dt_validade: Date;
-    nacionalidade: string
-    
-    constructor(nome: string, dt_validade: Date, nacionalidade: string){
-        this.nome = nome;
-        this.dt_validade = dt_validade;
-        this.nacionalidade = nacionalidade
+    adicionarEntrega(entrega: Entrega): void {
+        this.entregas.push(entrega);
+    }
+
+    funcionariosTrabalhando(): Funcionario[] {
+        const trabalhando: Funcionario[] = [];
+
+        for (const funcionario of this.funcionarios) {
+            if (funcionario instanceof Freelancer) {
+                if (funcionario.contratoAtivo()) {
+                    trabalhando.push(funcionario);
+                }
+            } else {
+                trabalhando.push(funcionario);
+            }
+        }
+
+        return trabalhando;
+    }
+
+    relatorioPratos(): Prato[] {
+        return this.pratos;
+    }
+
+    relatorioFuncionarios(): Funcionario[] {
+        return this.funcionarios;
+    }
+
+    relatorioEntregas(): Entrega[] {
+        return this.entregas;
+    }
+
+    relatorioSalarios(horasTrabalhadas: number): string[] {
+        const salarios: string[] = [];
+
+        for (const funcionario of this.funcionarios) {
+            let salario = 0;
+
+            if (funcionario instanceof CLT) {
+                salario = funcionario.salario_fixo;
+            } else if (funcionario instanceof Freelancer) {
+                salario = funcionario.salario_hora * horasTrabalhadas;
+            }
+
+            salarios.push(funcionario.nome + ": R$ " + salario);
+        }
+
+        return salarios;
     }
 }

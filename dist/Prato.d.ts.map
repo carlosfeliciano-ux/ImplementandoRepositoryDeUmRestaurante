@@ -1,0 +1,1 @@
+{"version":3,"file":"Prato.d.ts","sourceRoot":"","sources":["../src/Prato.ts"],"names":[],"mappings":"AAAA,qBAAa,KAAK;IACd,IAAI,EAAE,MAAM,CAAC;IACb,WAAW,EAAE,IAAI,CAAC;IAClB,aAAa,EAAE,MAAM,CAAC;IAEtB,YAAY,IAAI,EAAE,MAAM,EAAE,WAAW,EAAE,IAAI,EAAE,aAAa,EAAE,MAAM,EAIjE;CACJ"}

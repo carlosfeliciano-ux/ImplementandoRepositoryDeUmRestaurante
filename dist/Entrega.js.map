@@ -1,0 +1,1 @@
+{"version":3,"file":"Entrega.js","sourceRoot":"","sources":["../src/Entrega.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,OAAO;IAChB,QAAQ,CAAO;IACf,aAAa,CAAS;IACtB,QAAQ,CAAS;IAEjB,YAAY,QAAc,EAAE,aAAqB,EAAE,QAAgB;QAC/D,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,aAAa,GAAG,aAAa,CAAC;QACnC,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;IAC7B,CAAC;CACJ"}
